@@ -9,11 +9,11 @@ export async function POST(request: Request) {
 
 
 
-    const apiSecret = request.headers.get("X-API-Secret");
+    //const apiSecret = request.headers.get("X-API-Secret");
 
-    if (apiSecret !== process.env.API_SECRET) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+    //if (apiSecret !== process.env.API_SECRET) {
+    //  return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    //}
 
 
     
@@ -30,7 +30,7 @@ export async function POST(request: Request) {
     const response = await fetch(url.toString(), {
       method: "GET",
       headers: {
-        "X-API-Key": process.env.API_KEY || "",
+        //"X-API-Key": process.env.API_KEY || "",
         Accept: "image/jpeg",
       },
     });
