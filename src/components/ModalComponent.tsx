@@ -28,7 +28,6 @@ const ModalComponent: React.FC<ModalComponentProps> = ({ isOpen, onRequestClose,
     >
       <h2>{contentLabel}</h2>
       <button onClick={onRequestClose}>Close</button>
-      <div>I am a modal</div>
     </Modal>
   );
 };

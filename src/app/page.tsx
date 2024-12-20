@@ -7,9 +7,6 @@ export default function Home() {
   const [inputText, setInputText] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const closeModal = () => setModalIsOpen(false);
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -26,7 +23,6 @@ export default function Home() {
       const data = await response.json();
       console.log(data);
       setInputText("");
-      setModalIsOpen(true); // Open the modal when the response is received
     
     } catch (error) {
       console.error("Error:", error);
@@ -63,11 +59,6 @@ export default function Home() {
           </div>
         </form>
       </footer>
-      <ModalComponent
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        contentLabel="Generated Image"
-      />
     </div>
   );
 }
