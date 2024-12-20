@@ -38,7 +38,7 @@ export default function ImageGenerator({generateImage}: ImageGeneratorProps) {
 
     
     } catch (error) {
-      console.error("Error:", error);
+      console.error("Error:", error instanceof Error ? error.message : "Failed to generate image");
     } finally {
       setIsLoading(false);
     }
