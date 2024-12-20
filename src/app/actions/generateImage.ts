@@ -2,7 +2,8 @@
 
 export async function generateImage(text: string) {
     try {
-        const response = await fetch(`http://localhost:3000/api/generate-image`, {
+        const apiUrl = process.env.API_ENDPOINT || "http://localhost:3000/api/generate-image";
+        const response = await fetch(apiUrl, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

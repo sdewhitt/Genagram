@@ -45,6 +45,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ // TODO: Store prompt with the images
       success: true,
       imageUrl: blob.url,
+      imagePrompt: text,
     });
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : 'Unknown error';
