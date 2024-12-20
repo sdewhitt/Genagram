@@ -50,7 +50,17 @@ export default function Home() {
     
     <div className="min-h-screen flex flex-col justify-between p-8">
       <h1>Pentagram</h1>
-      <main className="flex-1">{/* Main content can go here */}</main>
+      <main className="flex-1">
+        {imageUrl && (
+          <div className="relative w-full max-w-2xl rounded-lg overflow-hidden shadow-lg mx-auto">
+            <img
+              src={imageUrl}
+              alt="Generated Image"
+              className="w-full h-auto"
+            />
+          </div>
+        )}
+      </main>
 
       {imageUrl && (
         <div className="relative w-full max-w-2xl rounded-lg overflow-hidden shadow-lg mx-auto">
