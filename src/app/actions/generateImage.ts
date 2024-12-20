@@ -2,10 +2,10 @@
 
 export async function generateImage(text: string) {
     try {
-        const response = await fetch(`https://localhost:3000/api/generate-image`, {
+        const response = await fetch(`http://localhost:3000/api/generate-image`, {
             method: "POST",
             headers: {
-            "Content-Type": "application/json",
+                "Content-Type": "application/json",
             },
             body: JSON.stringify({ text }),
         });
