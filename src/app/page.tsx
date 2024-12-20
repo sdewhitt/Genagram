@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import ModalComponent from "../components/ModalComponent";
 
 export default function Home() {
   const [inputText, setInputText] = useState("");
