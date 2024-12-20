@@ -10,6 +10,7 @@
     "format:fix": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\""
   },
   "dependencies": {
+    "@next/font": "^14.2.15",
     "next": "15.1.0",
     "prettier": "^3.4.2",
     "react": "^19.0.0",

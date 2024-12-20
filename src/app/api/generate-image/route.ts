@@ -4,7 +4,7 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
     const { text } = body;
-
+    console.log("Received:", text);
     // TODO: Call your Image Generation API here
     // For now, we'll just echo back the text
 
