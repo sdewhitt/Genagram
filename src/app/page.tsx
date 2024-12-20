@@ -62,17 +62,6 @@ export default function Home() {
         )}
       </main>
 
-      {imageUrl && (
-        <div className="relative w-full max-w-2xl rounded-lg overflow-hidden shadow-lg mx-auto">
-          <img
-            src={imageUrl}
-            alt="Generated Image"
-            className="w-full h-auto"
-          />
-        </div>
-      )}
-
-
 
       <footer className="w-full max-w-3xl mx-auto">
         <form onSubmit={handleSubmit} className="w-full">
