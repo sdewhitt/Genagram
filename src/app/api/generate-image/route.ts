@@ -9,7 +9,7 @@ export async function POST(request: Request) {
     
     // TODO: Call your Image Generation API here
     // For now, we'll just echo back the text
-    console.log("\nUser:\n", text);
+    console.log("\nUser:", text);
 
     const url = new URL("https://sethjtdewhitt--pentagram-model-generate.modal.run/");
 
