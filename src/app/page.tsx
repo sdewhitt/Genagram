@@ -1,10 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import ModalComponent from "../components/ModalComponent";
 
 export default function Home() {
   const [inputText, setInputText] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const closeModal = () => setModalIsOpen(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,6 +26,8 @@ export default function Home() {
       const data = await response.json();
       console.log(data);
       setInputText("");
+      setModalIsOpen(true); // Open the modal when the response is received
+    
     } catch (error) {
       console.error("Error:", error);
     } finally {
@@ -33,6 +39,7 @@ export default function Home() {
     // TODO: Update the UI here to show the images generated
     
     <div className="min-h-screen flex flex-col justify-between p-8">
+      <h1>Pentagram</h1>
       <main className="flex-1">{/* Main content can go here */}</main>
 
       <footer className="w-full max-w-3xl mx-auto">
@@ -56,6 +63,11 @@ export default function Home() {
           </div>
         </form>
       </footer>
+      <ModalComponent
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel="Generated Image"
+      />
     </div>
   );
 }
