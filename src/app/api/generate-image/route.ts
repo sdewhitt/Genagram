@@ -6,20 +6,10 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
     const { text } = body;
-
-
-
-    //const apiSecret = request.headers.get("X-API-Secret");
-
-    //if (apiSecret !== process.env.API_SECRET) {
-    //  return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    //}
-
-
     
     // TODO: Call your Image Generation API here
     // For now, we'll just echo back the text
-    console.log("\nUser:", text);
+    console.log("\nUser:\n", text);
 
     const url = new URL("https://sethjtdewhitt--pentagram-model-generate.modal.run/");
 
@@ -30,7 +20,7 @@ export async function POST(request: Request) {
     const response = await fetch(url.toString(), {
       method: "GET",
       headers: {
-        //"X-API-Key": process.env.API_KEY || "",
+        "X-API-Key": process.env.API_KEY || "",
         Accept: "image/jpeg",
       },
     });
@@ -55,7 +45,6 @@ export async function POST(request: Request) {
     return NextResponse.json({ // TODO: Store prompt with the images
       success: true,
       imageUrl: blob.url,
-      imagePrompt: text,
     });
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : 'Unknown error';
