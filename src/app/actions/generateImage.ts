@@ -3,7 +3,7 @@
 export async function generateImage(text: string) {
     try {
         const apiUrl = process.env.NODE_ENV === 'production'
-                        ? `https://pentagram-sdewhitts-projects.vercel.app/api/generate-image`
+                        ? `${process.env.VERCEL_URL}/api/generate-image`
                         : "http://localhost:3000/api/generate-image";
         const response = await fetch(apiUrl, {
             method: "POST",
