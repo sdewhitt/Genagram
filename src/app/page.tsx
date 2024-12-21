@@ -49,7 +49,8 @@ export default function Home() {
     // TODO: Update the UI here to show the images generated
     
     <div className="min-h-screen flex flex-col justify-between p-8">
-      <h1>Pentagram</h1>
+      <h1 className="text-xl font-semibold text-white">Pentagram</h1>
+
       <main className="flex-1">
         {imageUrl && (
           <div className="relative w-full max-w-2xl rounded-lg overflow-hidden shadow-lg mx-auto">
