@@ -103,10 +103,6 @@ export default function Home() {
 
       </div>
       <div className="flex-1 flex flex-col justify-between p-8">
-        <Head>
-          <title>Pentagram</title>
-        </Head>
-
         <h1 className="text-xl font-semibold text-white">Pentagram</h1>
 
         <main className="flex-1">
