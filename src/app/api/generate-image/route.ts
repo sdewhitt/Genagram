@@ -11,7 +11,7 @@ export async function POST(request: Request) {
     // For now, we'll just echo back the text
     console.log("\nUser:\n", text);
 
-    const url = new URL("https://sethjtdewhitt--pentagram-model-generate.modal.run/");
+    const url = new URL("https://megabyte9000--pentagram-model-generate.modal.run/");
 
     url.searchParams.set("prompt", text);
 

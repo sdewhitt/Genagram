@@ -1,15 +1,19 @@
 "use client";
 
 import { useState } from "react";
-import Head from "next/head";
+import Sidebar from "./Sidebar";
 
+//import BaseLoginWrapper from "./Login/BaseLoginWrapper";
 
 
 export default function Home() {
   const [inputText, setInputText] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
-  
+  const [images, setImages] = useState<{ url: string }[]>([]);
+
+
+  const imgError = "Failed to generate image";
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,79 +33,32 @@ export default function Home() {
       //setInputText("");
       
       if (!data.success) {
-        throw new Error(data.error || "Failed to generate image");
+        throw new Error(data.error || imgError);
       }
 
       if (data.imageUrl) {
         const img = new Image();
         img.onload = () => {
           setImageUrl(data.imageUrl);
+          setImages((prevImages) => [...prevImages, { url: data.imageUrl }]);
         };
         img.src = data.imageUrl;
 
       }
 
-      // Navigate to the manage creations page
-      window.location.href = '/manage-creations';
 
     } catch (error) {
       console.error("Error:", error);
-      alert(error instanceof Error ? error.message : "Failed to generate image");
+      alert(error instanceof Error ? error.message : imgError);
     } finally {
       setIsLoading(false);
     }
   };
 
-
-  const handleManageCreations = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-
-    try {
-      const response = await fetch("/api/manage-creations", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ text: inputText }),
-      });
-
-      const data = await response.json();
-
-      if (!data.success) {
-        throw new Error(data.error || "Failed to generate image");
-      }
-
-      if (data.imageUrl) {
-        const img = new Image();
-        img.onload = () => {
-          setImageUrl(data.imageUrl);
-        };
-        img.src = data.imageUrl;
-
-      }
-    }
-    catch (error) {
-      console.error("Error:", error);
-      alert(error instanceof Error ? error.message : "Failed to generate image");
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
   return (
     <div className="min-h-screen flex">
-      <div className="w-64 bg-gray-900 text-white p-4">
-        
-        <button 
-          // Sidebar
-          onClick={handleManageCreations}
-          disabled={isLoading}
-          className="w-full py-3 px-4 bg-blue-500 hover:bg-blue-700 rounded">
-          Manage Creations
-        </button>
-
-      </div>
+      <Sidebar images={images}/>
       <div className="flex-1 flex flex-col justify-between p-8">
         <h1 className="text-xl font-semibold text-white">Pentagram</h1>
 
