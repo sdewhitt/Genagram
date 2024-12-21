@@ -24,7 +24,7 @@ export default function Home() {
       const data = await response.json();
       //console.log(data);
       //setInputText("");
-
+      
       if (!data.success) {
         throw new Error(data.error || "Failed to generate image");
       }
