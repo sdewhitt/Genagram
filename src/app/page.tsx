@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Head from "next/head";
 
 export default function Home() {
   const [inputText, setInputText] = useState("");
@@ -23,7 +24,7 @@ export default function Home() {
       const data = await response.json();
       //console.log(data);
       //setInputText("");
-
+      
       if (!data.success) {
         throw new Error(data.error || "Failed to generate image");
       }
@@ -40,6 +41,7 @@ export default function Home() {
     
     } catch (error) {
       console.error("Error:", error);
+      alert(error instanceof Error ? error.message : "Failed to generate image");
     } finally {
       setIsLoading(false);
     }
@@ -49,7 +51,14 @@ export default function Home() {
     // TODO: Update the UI here to show the images generated
     
     <div className="min-h-screen flex flex-col justify-between p-8">
-      <h1>Pentagram</h1>
+      <div>
+        <Head>
+          <title>Pentagram</title>
+        </Head>
+      </div>
+      
+      <h1 className="text-xl font-semibold text-white">Pentagram</h1>
+
       <main className="flex-1">
         {imageUrl && (
           <div className="relative w-full max-w-2xl rounded-lg overflow-hidden shadow-lg mx-auto">
@@ -61,17 +70,6 @@ export default function Home() {
           </div>
         )}
       </main>
-
-      {imageUrl && (
-        <div className="relative w-full max-w-2xl rounded-lg overflow-hidden shadow-lg mx-auto">
-          <img
-            src={imageUrl}
-            alt="Generated Image"
-            className="w-full h-auto"
-          />
-        </div>
-      )}
-
 
 
       <footer className="w-full max-w-3xl mx-auto">
