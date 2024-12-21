@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Head from "next/head";
 
 export default function Home() {
   const [inputText, setInputText] = useState("");
@@ -40,6 +41,7 @@ export default function Home() {
     
     } catch (error) {
       console.error("Error:", error);
+      alert(error instanceof Error ? error.message : "Failed to generate image");
     } finally {
       setIsLoading(false);
     }
@@ -49,6 +51,12 @@ export default function Home() {
     // TODO: Update the UI here to show the images generated
     
     <div className="min-h-screen flex flex-col justify-between p-8">
+      <div>
+        <Head>
+          <title>Pentagram</title>
+        </Head>
+      </div>
+      
       <h1 className="text-xl font-semibold text-white">Pentagram</h1>
 
       <main className="flex-1">
