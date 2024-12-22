@@ -1,7 +1,7 @@
 # Genagram: Social Media for AI Images
 Inspired by the popular social platform Instagram, Genagram's vision is to combine Instagram's feed-based collection of user posts with ChatGPT's generative responses from user input. Work-in-progress and done as part of the Headstarter Accelerator program
 
-Link: https://vercel.com/sdewhitts-projects/genagram
+Link: https://genagram.vercel.app/
 
 The Modal app may be shut down to save money when you view the site, preventing image generation. Please email me at sethjtdewhitt@gmail.com and I'll start it up ASAP.
 
