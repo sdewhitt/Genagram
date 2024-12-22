@@ -16,7 +16,7 @@ export default function Home() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   //const [loginError, setLoginError] = useState<string | null>(null);
-  const [user, setUser] = useState<{ id: number; name: string; email: string } | null>(null);
+  //const [user, setUser] = useState<{ id: number; name: string; email: string } | null>(null);
 
 
   const imgError = "Failed to generate image";
@@ -101,8 +101,8 @@ export default function Home() {
   }
 
   const onLoginSuccess = (user: { id: number; name: string; email: string }) => {
-    setUser(user);
-    console.log("User:", user);
+    //setUser(user);
+    //console.log("User:", user);
     setIsLoginVisible(false);
 
     // Load user images:
