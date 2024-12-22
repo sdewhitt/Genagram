@@ -87,7 +87,7 @@ export default function Home() {
 
       toggleLoginVisibility();
 
-      onLoginSuccess(data.user);
+      //onLoginSuccess(data.user);
     } catch (error) {
       console.error('Error:', error);
     } finally {
@@ -99,16 +99,16 @@ export default function Home() {
   const toggleLoginVisibility = () => {
     setIsLoginVisible(wasLoginVisible => !wasLoginVisible);
   }
-
+/*
   const onLoginSuccess = (user: { id: number; name: string; email: string }) => {
-    //setUser(user);
-    //console.log("User:", user);
+    setUser(user);
+    console.log("User:", user);
     setIsLoginVisible(false);
 
     // Load user images:
 
 
-  }
+  }*/
 
 
   return (
