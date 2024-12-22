@@ -3,11 +3,11 @@ import React, { useState } from 'react';
 const LoginForm: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loginError, setLoginError] = useState<string | null>(null);
+  //const [loginError, setLoginError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoginError(null);
+   // setLoginError(null);
 
     try {
       const response = await fetch("/api/login", {
@@ -28,7 +28,7 @@ const LoginForm: React.FC = () => {
       // Handle successful login (e.g., redirect, update state, etc.)
     } catch (error) {
       console.error("Error:", error);
-      setLoginError(error instanceof Error ? error.message : "Login failed");
+      //setLoginError(error instanceof Error ? error.message : "Login failed");
     }
   };
 
