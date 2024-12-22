@@ -2,6 +2,7 @@ import React from 'react';
 
 interface SidebarProps {
   images: { url: string }[];
+  onImageClick: (url: string) => void;
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ images }) => {

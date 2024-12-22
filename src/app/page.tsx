@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Sidebar from "./Sidebar";
+import BaseLoginWrapper from "./BaseLoginWrapper";
+
 
 //import BaseLoginWrapper from "./Login/BaseLoginWrapper";
 
@@ -11,6 +13,7 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [images, setImages] = useState<{ url: string }[]>([]);
+  const [isLoginVisible, setIsLoginVisible] = useState(false);
 
 
   const imgError = "Failed to generate image";
@@ -55,10 +58,22 @@ export default function Home() {
     }
   };
 
+  const toggleLoginVisibility = () => {
+    setIsLoginVisible(wasLoginVisible => !wasLoginVisible);
+  }
+
 
   return (
     <div className="min-h-screen flex">
-      <Sidebar images={images}/>
+      <Sidebar images={images} onImageClick={(url) => setImageUrl(url)} />
+
+      <div className="fixed top-3 right-10 space-y-4   p-6 rounded-l">
+        <button onClick = {toggleLoginVisibility}>Login</button>
+        {isLoginVisible && (
+          <BaseLoginWrapper isLoginVisible={isLoginVisible} onBackdropClick={toggleLoginVisibility}></BaseLoginWrapper>
+        )}
+      </div>
+      
       <div className="flex-1 flex flex-col justify-between p-8">
         <h1 className="text-xl font-semibold text-white">Pentagram</h1>
 
