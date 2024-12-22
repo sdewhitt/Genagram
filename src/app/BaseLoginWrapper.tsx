@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Login from './Login';
 
 interface BaseLoginWrapperProps {
@@ -7,13 +7,9 @@ interface BaseLoginWrapperProps {
 }
 
 const BaseLoginWrapper: React.FC<BaseLoginWrapperProps> = ({onBackdropClick, isLoginVisible}) => {
-    const [isClient, setIsClient] = useState(false);
 
-    useEffect(() => {
-      setIsClient(true);
-    }, []);
   
-    if (!isClient || !isLoginVisible) return null;
+    if (!isLoginVisible) return null;
   
     return (<Login onBackdropClick={onBackdropClick}/>)
 }
