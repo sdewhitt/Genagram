@@ -11,5 +11,6 @@
 ### Implementation Details
 - All generated images are stored in a Vercel blob
 - API endpoints connected via Modal
-- Modal App health tested and upkept every 5 minutes. See keep_warm() in main.py for more
-- 
+- Modal App health tested and upkept every 5 minutes. For more details, see main.py in https://github.com/sdewhitt/Pentagram-Modal-Deployment
+- Next.js / Vercel deployment
+- Typescript mainly used
