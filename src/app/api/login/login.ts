@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken';
 const users = [
   {
     id: 1,
-    username: 'seth',
+    email: 'seth',
     password: 'pass',
   },
 ];
@@ -17,9 +17,9 @@ export async function POST(req: NextApiRequest, res: NextApiResponse) {
     return res.status(405).json({ message: 'Method not allowed' });
   }
 
-  const { username, password } = req.body;
+  const { email, password } = req.body;
 
-  const user = users.find((u) => u.username === username);
+  const user = users.find((u) => u.email === email);
   if (!user) {
     return res.status(401).json({ message: 'Invalid username or password' });
   }

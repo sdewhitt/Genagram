@@ -13,8 +13,8 @@ export default function Home() {
   const [images, setImages] = useState<{ url: string }[]>([]);
   const [isLoginVisible, setIsLoginVisible] = useState(false);
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   //const [loginError, setLoginError] = useState<string | null>(null);
   const [user, setUser] = useState<{ id: number; name: string; email: string } | null>(null);
 
@@ -66,6 +66,7 @@ export default function Home() {
 
   const handleLoginSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       console.log("Email:", email);
       console.log("Password:", password);
@@ -89,6 +90,8 @@ export default function Home() {
       onLoginSuccess(data.user);
     } catch (error) {
       console.error('Error:', error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
