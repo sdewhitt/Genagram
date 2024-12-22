@@ -7,6 +7,11 @@
 ### In-Progress Features
 - Logins
 - Full Instagram-like feed scrolling and sharing
+- Ensuring the hosted image generation model operates within low-latency thresholds (<2 seconds) while handling multiple concurrent requests
+- Managing the dynamic scaling of GPU resources to handle demand spikes without exceeding cost or causing performance bottlenecks.
+- Add the ability to search for images semantically
+- Prevent harmful or inappropriate content from being generated
+- Build a recommendation system that creates personalized feeds for users, balancing new content discovery with user preferences
 
 ### Implementation Details
 - All generated images are stored in a Vercel blob
