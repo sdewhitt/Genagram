@@ -2,10 +2,8 @@
 
 import { useState } from "react";
 import Sidebar from "./Sidebar";
-import BaseLoginWrapper from "./BaseLoginWrapper";
 
-
-//import BaseLoginWrapper from "./Login/BaseLoginWrapper";
+//import BaseLoginWrapper from "./Login/BaseLoginWrapper"; import Login from "./Login"; import LoginForm from "./LoginForm";
 
 
 export default function Home() {
@@ -14,12 +12,12 @@ export default function Home() {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [images, setImages] = useState<{ url: string }[]>([]);
   const [isLoginVisible, setIsLoginVisible] = useState(false);
-/*
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loginError, setLoginError] = useState<string | null>(null);
+  //const [loginError, setLoginError] = useState<string | null>(null);
   const [user, setUser] = useState<{ id: number; name: string; email: string } | null>(null);
-*/
+
 
   const imgError = "Failed to generate image";
 
@@ -65,42 +63,50 @@ export default function Home() {
 
 
   // =============== LOGIN  ================= 
-/*
+
   const handleLoginSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoginError(null);
-
     try {
-      const response = await fetch("/api", {
-        method: "handler",
-        headers: { "Content-Type": "application/json" },
+      console.log("Email:", email);
+      console.log("Password:", password);
+      
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify({ email, password }),
       });
 
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || "Login failed");
+        throw new Error('Login failed');
       }
 
       const data = await response.json();
-      setUser(data.user);
-      setIsLoginVisible(false); // Close login form on success
+      onLoginSuccess(data.user);
     } catch (error) {
-      setLoginError(error instanceof Error ? error.message : "An error occurred");
+      console.error('Error:', error);
     }
   };
-*/
+
 
   const toggleLoginVisibility = () => {
     setIsLoginVisible(wasLoginVisible => !wasLoginVisible);
+  }
+
+  const onLoginSuccess = (user: { id: number; name: string; email: string }) => {
+    setUser(user);
+    setIsLoginVisible(false);
+
+    // Load user images:
+
+
   }
 
 
   return (
     <div className="min-h-screen flex bg-indigo-950">
       <Sidebar images={images} onImageClick={(url) => setImageUrl(url)} />
-
-      
       
       <div className="flex-1 flex flex-col justify-between p-8">
         <h1 className="text-xl font-semibold text-white text-center"> 
@@ -122,10 +128,60 @@ export default function Home() {
         <div className="fixed top-3 right-10 space-y-4 bg-indigo-900  p-3 rounded-xl">
         <button onClick = {toggleLoginVisibility}>Login</button>
         {isLoginVisible && (
-          <BaseLoginWrapper isLoginVisible={isLoginVisible} onBackdropClick={toggleLoginVisibility}></BaseLoginWrapper>
-        )}
-      </div>
+          <div 
+              className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"
+              style={{ top: -50, bottom: 0, left: 0, right: 0 }} 
+              onClick={toggleLoginVisibility}>
+            <div className="bg-white p-8 rounded-lg" onClick={(e) => e.stopPropagation()}>
+              <h2 className="text-2xl text-gray-900 font-semibold mb-4">Login</h2>
 
+              {/* LOGIN FORM */}
+              <form onSubmit={handleLoginSubmit} className="space-y-4">
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-m text-black"
+                    required
+                  />
+                </div>
+                <div>
+                  <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                    Password
+                  </label>
+                  <input
+                    type="password"
+                    id="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-m text-black"
+                    required
+                  />
+                </div>
+                <div>
+                  <button
+                    type="submit"
+                    className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-800 hover:bg-indigo-950 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Login
+                  </button>
+                </div>
+              </form>
+
+
+            </div>
+          </div>
+        )}
+
+
+
+
+      </div>
+        {/* Prompt and Sumbit Boxes */}
         <footer className="w-full max-w-3xl mx-auto">
           <form onSubmit={handleSubmit} className="w-full">
             <div className="flex gap-2">

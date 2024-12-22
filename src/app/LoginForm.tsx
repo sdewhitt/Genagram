@@ -1,38 +1,38 @@
 import React, { useState } from 'react';
-
-const LoginForm: React.FC = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  //const [loginError, setLoginError] = useState<string | null>(null);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-   // setLoginError(null);
-
-    try {
-      const response = await fetch("/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || "Login failed");
-      }
-
-      const data = await response.json();
-      console.log('Login successful:', data);
-      // Handle successful login (e.g., redirect, update state, etc.)
-    } catch (error) {
-      console.error("Error:", error);
-      //setLoginError(error instanceof Error ? error.message : "Login failed");
-    }
-  };
-
+interface LoginFormProps {
+    onLoginSuccess: (user: string) => void;
+}
+const LoginForm: React.FC<LoginFormProps> = ({ onLoginSuccess }) => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
   
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+
+
+
+      try {
+        console.log("Email:", email);
+        console.log("Password:", password);
+        
+        const response = await fetch('/api/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, password }),
+        });
+  
+        if (!response.ok) {
+          throw new Error('Login failed');
+        }
+  
+        const data = await response.json();
+        onLoginSuccess(data.user);
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">

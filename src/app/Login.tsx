@@ -13,7 +13,7 @@ const Login: React.FC<LoginProps> = ({ onBackdropClick }) => {
         onClick={onBackdropClick}>
       <div className="bg-white p-8 rounded-lg" onClick={(e) => e.stopPropagation()}>
         <h2 className="text-2xl text-gray-900 font-semibold mb-4">Login</h2>
-        <LoginForm />
+        <LoginForm onLoginSuccess={(user) => console.log(`Login successful for user: ${user}`)} />
       </div>
     </div>
   );
