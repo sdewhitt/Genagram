@@ -64,7 +64,7 @@ export default function Home() {
 
 
   return (
-    <div className="min-h-screen flex">
+    <div className="min-h-screen flex bg-indigo-950">
       <Sidebar images={images} onImageClick={(url) => setImageUrl(url)} />
 
       <div className="fixed top-3 right-10 space-y-4   p-6 rounded-l">
@@ -75,7 +75,7 @@ export default function Home() {
       </div>
       
       <div className="flex-1 flex flex-col justify-between p-8">
-        <h1 className="text-xl font-semibold text-white">Pentagram</h1>
+        <h1 className="text-xl font-semibold text-white text-center">Pentagram</h1>
 
         <main className="flex-1">
           {imageUrl && (

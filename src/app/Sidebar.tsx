@@ -7,8 +7,8 @@ interface SidebarProps {
 
 const Sidebar: React.FC<SidebarProps> = ({ images }) => {
   return (
-    <div className="w-64 bg-gray-900 text-white p-4 flex flex-col h-screen">
-      <h2 className="text-lg font-semibold mb-4">Your Images</h2>
+    <div className="w-64 bg-indigo-900 text-white p-4 flex flex-col h-screen">
+      <h2 className="text-l font-semibold mb-4 center">Image Library</h2>
       <div className="overflow-y-auto flex-1">
         {images.map((image, index) => (
           <div key={index} className="mb-4">
