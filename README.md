@@ -1,4 +1,4 @@
-# Pentagram: Instagram, but with AI Images
+# Genagram: Instagram, but with AI Images
 
 ### Features
 - User-submitted prompts will generate a relevant image using Stability AI's sdxl-turbo model
