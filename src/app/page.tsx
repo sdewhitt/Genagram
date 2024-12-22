@@ -83,7 +83,7 @@ export default function Home() {
         throw new Error('Login failed');
       }
 
-      const data = await response.json();
+      //const data = await response.json();
 
       toggleLoginVisibility();
 
