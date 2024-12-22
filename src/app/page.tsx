@@ -83,6 +83,9 @@ export default function Home() {
       }
 
       const data = await response.json();
+
+      toggleLoginVisibility();
+
       onLoginSuccess(data.user);
     } catch (error) {
       console.error('Error:', error);
@@ -96,6 +99,7 @@ export default function Home() {
 
   const onLoginSuccess = (user: { id: number; name: string; email: string }) => {
     setUser(user);
+    console.log("User:", user);
     setIsLoginVisible(false);
 
     // Load user images:
