@@ -3,13 +3,36 @@ import React, { useState } from 'react';
 const LoginForm: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loginError, setLoginError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log('Email:', email);
-    console.log('Password:', password);
+    setLoginError(null);
+
+    try {
+      const response = await fetch("/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Login failed");
+      }
+
+      const data = await response.json();
+      console.log('Login successful:', data);
+      // Handle successful login (e.g., redirect, update state, etc.)
+    } catch (error) {
+      console.error("Error:", error);
+      setLoginError(error instanceof Error ? error.message : "Login failed");
+    }
   };
+
+  
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">

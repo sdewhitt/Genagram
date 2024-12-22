@@ -15,6 +15,11 @@ export default function Home() {
   const [images, setImages] = useState<{ url: string }[]>([]);
   const [isLoginVisible, setIsLoginVisible] = useState(false);
 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loginError, setLoginError] = useState<string | null>(null);
+  const [user, setUser] = useState<{ id: number; name: string; email: string } | null>(null);
+
 
   const imgError = "Failed to generate image";
 
@@ -58,6 +63,34 @@ export default function Home() {
     }
   };
 
+
+  // =============== LOGIN  =================
+
+  const handleLoginSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoginError(null);
+
+    try {
+      const response = await fetch("/api", {
+        method: "handler",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Login failed");
+      }
+
+      const data = await response.json();
+      setUser(data.user);
+      setIsLoginVisible(false); // Close login form on success
+    } catch (error) {
+      setLoginError(error instanceof Error ? error.message : "An error occurred");
+    }
+  };
+
+
   const toggleLoginVisibility = () => {
     setIsLoginVisible(wasLoginVisible => !wasLoginVisible);
   }
@@ -67,17 +100,14 @@ export default function Home() {
     <div className="min-h-screen flex bg-indigo-950">
       <Sidebar images={images} onImageClick={(url) => setImageUrl(url)} />
 
-      <div className="fixed top-3 right-10 space-y-4   p-6 rounded-l">
-        <button onClick = {toggleLoginVisibility}>Login</button>
-        {isLoginVisible && (
-          <BaseLoginWrapper isLoginVisible={isLoginVisible} onBackdropClick={toggleLoginVisibility}></BaseLoginWrapper>
-        )}
-      </div>
+      
       
       <div className="flex-1 flex flex-col justify-between p-8">
-        <h1 className="text-xl font-semibold text-white text-center">Pentagram</h1>
+        <h1 className="text-xl font-semibold text-white text-center"> 
+          Pentagram
+        </h1>
 
-        <main className="flex-1">
+        <main className="flex-1 mt-7">
           {imageUrl && (
             <div className="relative w-full max-w-2xl rounded-lg overflow-hidden shadow-lg mx-auto">
               <img
@@ -88,6 +118,13 @@ export default function Home() {
             </div>
           )}
         </main>
+
+        <div className="fixed top-3 right-10 space-y-4 bg-indigo-900  p-3 rounded-xl">
+        <button onClick = {toggleLoginVisibility}>Login</button>
+        {isLoginVisible && (
+          <BaseLoginWrapper isLoginVisible={isLoginVisible} onBackdropClick={toggleLoginVisibility}></BaseLoginWrapper>
+        )}
+      </div>
 
         <footer className="w-full max-w-3xl mx-auto">
           <form onSubmit={handleSubmit} className="w-full">
