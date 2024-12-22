@@ -1,4 +1,4 @@
-# Genagram: Instagram, but with AI Images
+# Genagram: Social Media for AI Images
 
 ### Features
 - User-submitted prompts will generate a relevant image using Stability AI's sdxl-turbo model
