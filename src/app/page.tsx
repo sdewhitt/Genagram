@@ -14,12 +14,12 @@ export default function Home() {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [images, setImages] = useState<{ url: string }[]>([]);
   const [isLoginVisible, setIsLoginVisible] = useState(false);
-
+/*
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState<string | null>(null);
   const [user, setUser] = useState<{ id: number; name: string; email: string } | null>(null);
-
+*/
 
   const imgError = "Failed to generate image";
 
@@ -65,7 +65,7 @@ export default function Home() {
 
 
   // =============== LOGIN  ================= 
-
+/*
   const handleLoginSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoginError(null);
@@ -89,7 +89,7 @@ export default function Home() {
       setLoginError(error instanceof Error ? error.message : "An error occurred");
     }
   };
-
+*/
 
   const toggleLoginVisibility = () => {
     setIsLoginVisible(wasLoginVisible => !wasLoginVisible);
