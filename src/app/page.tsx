@@ -104,7 +104,7 @@ export default function Home() {
       
       <div className="flex-1 flex flex-col justify-between p-8">
         <h1 className="text-xl font-semibold text-white text-center"> 
-          Pentagram
+          Genagram
         </h1>
 
         <main className="flex-1 mt-7">
