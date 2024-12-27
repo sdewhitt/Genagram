@@ -11,7 +11,7 @@ The Modal app may be shut down to save money when you view the site, preventing 
 
 ### Implementation Details
 - All generated images are stored in a Vercel blob
-- API endpoints connected via Modal
+- API endpoints connected via Modal. Used separate repo: https://github.com/sdewhitt/Genagram-Modal-Deployment
 - Next.js / Vercel deployment
 - Typescript mainly used
 
