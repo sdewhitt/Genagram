@@ -1,5 +1,5 @@
-# Genagram: Social Media for AI Images
-Inspired by the popular social platform Instagram, Genagram's vision is to combine Instagram's feed-based collection of user posts with ChatGPT's generative responses from user input. Work-in-progress and done as part of the Headstarter Accelerator program
+# Genagram: ChatGPT-like platform for AI Images
+Inspired by the UI for ChatGPT where users can prompt the machine for text responses, Genagram aims to accomplish the same, but quickly generate quality images using Stability AI's sdxl-turbo model
 
 Link: https://genagram.vercel.app/
 
@@ -12,18 +12,17 @@ The Modal app may be shut down to save money when you view the site, preventing 
 ### Implementation Details
 - All generated images are stored in a Vercel blob
 - API endpoints connected via Modal
-- Modal App health tested and upkept every 5 minutes. For more details, see main.py in https://github.com/sdewhitt/Pentagram-Modal-Deployment
 - Next.js / Vercel deployment
 - Typescript mainly used
 
 ### In-Progress Features
-- Logins
-- Full Instagram-like feed scrolling and sharing
+- Authentication and designated storage for users
 
 ### Future Goals
+- Develop a subpage that functions like an Instagram feed, where users can browse other users' creations and interact with their posts
 - Ensuring the hosted image generation model operates within low-latency thresholds (<2 seconds) while handling multiple concurrent requests
-- Managing the dynamic scaling of GPU resources to handle demand spikes without exceeding cost or causing performance bottlenecks.
-- Add the ability to search for images semantically
+- Managing the dynamic scaling of GPU resources to handle demand spikes without exceeding cost or causing performance bottlenecks
+- Add the ability to search for images semantically across user libraries
 - Prevent harmful or inappropriate content from being generated
 - Build a recommendation system that creates personalized feeds for users, balancing new content discovery with user preferences
 
